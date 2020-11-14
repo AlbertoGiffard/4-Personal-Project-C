@@ -503,13 +503,10 @@ LinkedList* ll_subList(LinkedList* this,int from,int to)
             cloneArray = ll_newLinkedList();
             if(cloneArray != NULL)
             {
-                for(i = from; i < to; i++)
+                for(i = from; i <= to; i++)
                 {
                     pElement = ll_get(this, i);
-                    if(pElement != NULL)
-                    {
-                        ll_add(cloneArray, pElement);
-                    }
+                    ll_add(cloneArray, pElement);
                 }
             }
         }
@@ -536,14 +533,7 @@ LinkedList* ll_clone(LinkedList* this)
         cloneArray = ll_newLinkedList();
         if(cloneArray != NULL)
         {
-            for(i = 0; i < ll_len(this); i++)
-            {
-                pElement = ll_get(this, i);
-                if(pElement != NULL)
-                {
-                    ll_add(cloneArray, pElement);
-                }
-            }
+            cloneArray = ll_subList(this, 0, ll_len(this));
         }
     }
 
@@ -577,20 +567,10 @@ int ll_sort(LinkedList* this, int (*pFunc)(void*,void*), int order)
                     firstParam = ll_get(this, i);
                     secondParam = ll_get(this, j);
                     result = pFunc(firstParam, secondParam);
-                    if(order == 0)
+                    if((order == 0 && result == -1) || (order == 1 && result == 1))
                     {
-                        if(result == -1)
-                        {
                             ll_set(this, i, secondParam);
                             ll_set(this, j, firstParam);
-                        }
-                    } else
-                    {
-                        if(result == 1)
-                        {
-                            ll_set(this, i, secondParam);
-                            ll_set(this, j, firstParam);
-                        }
                     }
                 }
             }
