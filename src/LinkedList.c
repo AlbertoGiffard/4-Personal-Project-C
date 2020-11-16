@@ -255,7 +255,7 @@ int ll_remove(LinkedList* this,int nodeIndex)
             } else
             {
                 prev = getNode(this, nodeIndex-1);
-                next = getNode(this, nodeIndex+1);
+                next = current->pNextNode;
                 prev->pNextNode = next;
             }
         }
@@ -281,7 +281,7 @@ int ll_clear(LinkedList* this)
     int i;
     if(this != NULL)
     {
-        for(i = 0; i < ll_len(this); i++)
+        for(i = ll_len(this)-1; i >= 0; i--)
         {
             if(ll_remove(this, i) == 0)
             {
