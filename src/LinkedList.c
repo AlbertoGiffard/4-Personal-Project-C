@@ -526,8 +526,6 @@ LinkedList* ll_subList(LinkedList* this,int from,int to)
 LinkedList* ll_clone(LinkedList* this)
 {
     LinkedList* cloneArray = NULL;
-    int i;
-    void* pElement;
     if(this != NULL)
     {
         cloneArray = ll_newLinkedList();
